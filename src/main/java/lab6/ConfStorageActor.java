@@ -1,4 +1,6 @@
 package lab6;
 
-public class ConfStorageActor {
+import akka.actor.AbstractActor;
+
+public class ConfStorageActor extends AbstractActor {
 }
