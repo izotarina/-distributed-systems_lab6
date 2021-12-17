@@ -15,10 +15,10 @@ public class HttpServer {
                 path("", () ->
                         get(() ->
                                 parameter("url", (url) ->
-                                {
-                                    Future<Object> result = Patterns.ask(routerActor, new GetTestResults(packageId), 5000);
-                                    return completeOKWithFuture(result, Jackson.marshaller());
-                                })))
+                                        parameter("count", (count) -> {
+
+                                        })
+                                )))
         return router;
     }
 }
