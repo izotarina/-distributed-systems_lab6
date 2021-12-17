@@ -34,7 +34,7 @@ public class HttpServer {
                                     );
                                 }
 
-                                return completeWithFuture(Patterns.ask())
+                                return completeWithFuture(http.singleRequest(url));
                             }
                         })
                     )))
