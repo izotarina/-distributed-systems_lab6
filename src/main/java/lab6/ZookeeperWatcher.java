@@ -36,6 +36,6 @@ public class ZookeeperWatcher implements Watcher {
             e.printStackTrace();
         }
 
-        Patterns.ask()
+        Patterns.ask(confStorage, )
     }
 }
