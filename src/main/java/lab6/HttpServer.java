@@ -26,7 +26,9 @@ public class HttpServer {
                             {
                                 if (count != 0) {
                                     return completeWithFuture(Patterns.ask(confStorageActor, new GetRandomServer(), Duration.ofMillis(5000))
-                                        .thenCompose()
+                                        .thenCompose(response -> {
+
+                                    })
                                     )
                                 }
                                 Future<Object> result = Patterns.ask(routerActor, new GetTestResults(packageId), 5000);
