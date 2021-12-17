@@ -19,7 +19,7 @@ public class HttpServer {
         this.http = http;
     }
 
-    private Route createRoute(ActorRef routerActor) {
+    private Route createRoute() {
         return route(
             path("", () ->
                 get(() ->
