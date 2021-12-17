@@ -8,7 +8,7 @@ public class ZookeeperWatcher implements Watcher {
     private final static ZooKeeper zoo;
 
     public ZookeeperWatcher(ZooKeeper zoo) {
-        
+        this.zoo = zoo;
     }
 
     @Override
