@@ -13,11 +13,15 @@ public class ZookeeperWatcher implements Watcher {
 
     @Override
     public void process(WatchedEvent watchedEvent) {
-        zoo.create("/servers/s",
-                "data".getBytes(),
-                ZooDefs.Ids.OPEN_ACL_UNSAFE ,
-                CreateMode.EPHEMERAL_SEQUENTIAL
-        );
+        try {
+            zoo.create("/servers/s",
+                    "data".getBytes(),
+                    ZooDefs.Ids.OPEN_ACL_UNSAFE ,
+                    CreateMode.EPHEMERAL_SEQUENTIAL
+            );
+        } catch (KeeperException | InterruptedException e) {
+            e.printStackTrace();
+        }
         List<String> servers = zoo.getChildren("/servers", this);
         for (String s: servers) {
             byte[] data = zoo.getData("/servers/" + s, false, null);
