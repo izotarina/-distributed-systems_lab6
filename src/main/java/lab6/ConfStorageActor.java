@@ -7,14 +7,13 @@ import akka.japi.pf.ReceiveBuilder;
 import java.util.ArrayList;
 
 public class ConfStorageActor extends AbstractActor {
-    private final ArrayList<String> servers = new ArrayList<>();
+    private ArrayList<String> servers = new ArrayList<>();
 
     @Override
     public Receive createReceive() {
         return ReceiveBuilder.create()
-                .match(StoreTestResult.class, m -> {
-                    Pair<String, Integer> key = new Pair<>(m.getUrl(), m.getRequestCount());
-                    store.put(key, m);
+                .match(ServersList.class, m -> {
+                    servers = m.getServers();
                 })
                 .match(GetTestResult.class, req -> {
                             Pair<String, Integer> key = new Pair<>(req.getUrl(), req.getRequestCount());
