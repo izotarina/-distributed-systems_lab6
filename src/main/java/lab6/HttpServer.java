@@ -15,8 +15,9 @@ public class HttpServer {
     private final ActorRef confStorageActor;
     private final Http http;
 
-    public HttpServer(ActorRef confStorageActor) {
+    public HttpServer(ActorRef confStorageActor, Http http) {
         this.confStorageActor = confStorageActor;
+        this.http = http;
     }
 
     private Route createRoute(ActorRef routerActor) {
