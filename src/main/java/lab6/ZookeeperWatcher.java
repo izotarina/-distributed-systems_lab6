@@ -1,5 +1,6 @@
 package lab6;
 
+import akka.pattern.Patterns;
 import org.apache.zookeeper.*;
 
 import java.util.List;
@@ -34,5 +35,7 @@ public class ZookeeperWatcher implements Watcher {
         } catch (KeeperException | InterruptedException e) {
             e.printStackTrace();
         }
+
+        Patterns.ask()
     }
 }
