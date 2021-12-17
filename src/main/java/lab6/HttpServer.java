@@ -23,7 +23,7 @@ public class HttpServer {
                         parameter("count", (count) -> {
                             {
                                 if (count != 0) {
-                                    return completeWithFuture(Patterns.ask())
+                                    return completeWithFuture(Patterns.ask(confStorageActor, new GetRandomServer(), ))
                                 }
                                 Future<Object> result = Patterns.ask(routerActor, new GetTestResults(packageId), 5000);
                                 return completeOKWithFuture(result, Jackson.marshaller());
