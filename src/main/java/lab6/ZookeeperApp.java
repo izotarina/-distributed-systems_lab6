@@ -9,7 +9,7 @@ import akka.stream.ActorMaterializer;
 public class ZookeeperApp {
     public static void main(String[] args) {
         ActorSystem system = ActorSystem.create("test");
-        ActorRef router = system.actorOf(Props.create(HttpServer.class));
+        ActorRef confStorage = system.actorOf(Props.create(ConfStorageActor.class));
 
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
