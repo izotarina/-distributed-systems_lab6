@@ -1,6 +1,7 @@
 package lab6;
 
 import akka.actor.ActorRef;
+import akka.http.javadsl.Http;
 import akka.http.javadsl.marshallers.jackson.Jackson;
 import akka.http.javadsl.server.Route;
 import akka.pattern.Patterns;
@@ -12,6 +13,7 @@ import static akka.http.javadsl.server.Directives.*;
 
 public class HttpServer {
     private final ActorRef confStorageActor;
+    private final Http http;
 
     public HttpServer(ActorRef confStorageActor) {
         this.confStorageActor = confStorageActor;
