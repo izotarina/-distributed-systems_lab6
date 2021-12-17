@@ -1,13 +1,11 @@
 package lab6;
 
-import org.apache.zookeeper.CreateMode;
-import org.apache.zookeeper.WatchedEvent;
-import org.apache.zookeeper.Watcher;
-import org.apache.zookeeper.ZooDefs;
+import org.apache.zookeeper.*;
 
 import java.util.List;
 
 public class ZookeeperWatcher implements Watcher {
+    private final static ZooKeeper zoo;
     @Override
     public void process(WatchedEvent watchedEvent) {
         zoo.create("/servers/s",
