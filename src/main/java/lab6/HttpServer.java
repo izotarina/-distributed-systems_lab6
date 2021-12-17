@@ -9,6 +9,7 @@ import scala.concurrent.Future;
 import static akka.http.javadsl.server.Directives.*;
 
 public class HttpServer {
+    private final ActorRef confStorageActor;
 
     private Route createRoute(ActorRef routerActor) {
         Route router = route(
