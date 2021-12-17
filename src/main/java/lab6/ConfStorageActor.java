@@ -5,6 +5,7 @@ import akka.japi.Pair;
 import akka.japi.pf.ReceiveBuilder;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ConfStorageActor extends AbstractActor {
     private ArrayList<String> servers = new ArrayList<>();
@@ -16,7 +17,7 @@ public class ConfStorageActor extends AbstractActor {
                 servers = m.getServers();
             })
             .match(GetRandomServer.class, req -> {
-                    sender().tell(result, self());
+                    sender().tell(Random, self());
                 }
             ).build();
     }
