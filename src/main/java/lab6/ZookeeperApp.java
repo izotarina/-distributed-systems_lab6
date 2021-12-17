@@ -9,10 +9,11 @@ import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.ZooDefs;
 import org.apache.zookeeper.ZooKeeper;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ZookeeperApp {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ActorSystem system = ActorSystem.create("test");
         ActorRef confStorage = system.actorOf(Props.create(ConfStorageActor.class));
 
