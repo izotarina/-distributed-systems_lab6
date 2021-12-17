@@ -6,6 +6,8 @@ import akka.http.javadsl.server.Route;
 import akka.pattern.Patterns;
 import scala.concurrent.Future;
 
+import java.time.Duration;
+
 import static akka.http.javadsl.server.Directives.*;
 
 public class HttpServer {
@@ -23,7 +25,8 @@ public class HttpServer {
                         parameter("count", (count) -> {
                             {
                                 if (count != 0) {
-                                    return completeWithFuture(Patterns.ask(confStorageActor, new GetRandomServer(), 5000)
+                                    return completeWithFuture(Patterns.ask(confStorageActor, new GetRandomServer(), Duration.ofMillis(5000))
+                                        .thenCompose()
                                     )
                                 }
                                 Future<Object> result = Patterns.ask(routerActor, new GetTestResults(packageId), 5000);
