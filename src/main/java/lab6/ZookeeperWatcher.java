@@ -22,7 +22,13 @@ public class ZookeeperWatcher implements Watcher {
         } catch (KeeperException | InterruptedException e) {
             e.printStackTrace();
         }
-        List<String> servers = zoo.getChildren("/servers", this);
+
+        List<String> servers = null;
+        try {
+            servers = zoo.getChildren("/servers", this);
+        } catch (KeeperException | InterruptedException e) {
+            e.printStackTrace();
+        }
         for (String s: servers) {
             byte[] data = zoo.getData("/servers/" + s, false, null);
             System.out.println("server " + s + " data=" + new String(data));
