@@ -2,11 +2,9 @@ package lab6;
 
 import akka.actor.ActorRef;
 import akka.http.javadsl.Http;
-import akka.http.javadsl.marshallers.jackson.Jackson;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.server.Route;
 import akka.pattern.Patterns;
-import scala.concurrent.Future;
 
 import java.time.Duration;
 
@@ -38,7 +36,7 @@ public class HttpServer {
                             }
                         })
                     ))));
-        
+
         return router;
     }
 }
