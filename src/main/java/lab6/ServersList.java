@@ -1,15 +1,15 @@
 package lab6;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ServersList {
-    private final ArrayList<String> servers;
+    private final List<String> servers;
 
-    public ServersList(ArrayList<String> servers) {
+    public ServersList(List<String> servers) {
         this.servers = servers;
     }
 
-    public ArrayList<String> getServers() {
+    public List<String> getServers() {
         return servers;
     }
 }
