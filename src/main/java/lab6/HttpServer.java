@@ -30,11 +30,10 @@ public class HttpServer {
                             {
                                 if (Integer.parseInt(count) != 0) {
                                     return completeWithFuture(Patterns.ask(confStorageActor, new GetRandomServer(), Duration.ofMillis(5000))
-                                        .thenCompose(response -> {
-                                            return http.singleRequest(HttpRequest.create(String.format("http://%s/?url=http://%s&count=%d", response, url, Integer.parseInt(count))));
-                                    })
-                                    )
+                                        .thenCompose(response -> http.singleRequest(HttpRequest.create(String.format("http://%s/?url=http://%s&count=%d", response, url, Integer.parseInt(count)))))
+                                    );
                                 }
+                                
                                 Future<Object> result = Patterns.ask(routerActor, new GetTestResults(packageId), 5000);
                                 return completeOKWithFuture(result, Jackson.marshaller());
                             }
