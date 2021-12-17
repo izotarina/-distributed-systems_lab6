@@ -36,7 +36,7 @@ public class ZookeeperWatcher implements Watcher {
                 byte[] data = zoo.getData("/servers/" + s, false, null);
                 System.out.println("server " + s + " data=" + new String(data));
 
-                servers.add(data);
+                servers.add(new String(data));
             }
         } catch (KeeperException | InterruptedException e) {
             e.printStackTrace();
