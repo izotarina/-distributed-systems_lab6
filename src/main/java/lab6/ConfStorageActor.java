@@ -9,6 +9,7 @@ import java.util.Random;
 
 public class ConfStorageActor extends AbstractActor {
     private ArrayList<String> servers = new ArrayList<>();
+    private final Random random = new Random();
 
     @Override
     public Receive createReceive() {
