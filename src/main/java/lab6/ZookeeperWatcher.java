@@ -5,7 +5,7 @@ import org.apache.zookeeper.*;
 import java.util.List;
 
 public class ZookeeperWatcher implements Watcher {
-    private final static ZooKeeper zoo;
+    private final ZooKeeper zoo;
 
     public ZookeeperWatcher(ZooKeeper zoo) {
         this.zoo = zoo;
