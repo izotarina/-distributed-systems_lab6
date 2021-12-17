@@ -5,6 +5,7 @@ import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.http.javadsl.Http;
 import akka.stream.ActorMaterializer;
+import org.apache.zookeeper.ZooKeeper;
 
 public class ZookeeperApp {
     public static void main(String[] args) {
@@ -13,5 +14,7 @@ public class ZookeeperApp {
 
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
+
+        final ZooKeeper zoo = new ZooKeeper();
     }
 }
