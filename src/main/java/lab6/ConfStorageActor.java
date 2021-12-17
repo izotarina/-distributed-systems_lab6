@@ -5,8 +5,6 @@ import akka.japi.Pair;
 import akka.japi.pf.ReceiveBuilder;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ConfStorageActor extends AbstractActor {
     private final ArrayList<String> servers = new ArrayList<>();
