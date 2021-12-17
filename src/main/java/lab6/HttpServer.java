@@ -30,6 +30,7 @@ public class HttpServer {
                                 if (count != 0) {
                                     return completeWithFuture(Patterns.ask(confStorageActor, new GetRandomServer(), Duration.ofMillis(5000))
                                         .thenCompose(response -> {
+                                            http.singleRequest()
                                     })
                                     )
                                 }
