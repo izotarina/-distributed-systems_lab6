@@ -1,2 +1,4 @@
-package lab6;public class HttpServer {
+package lab6;
+
+public class HttpServer {
 }
