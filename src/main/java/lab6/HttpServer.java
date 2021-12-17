@@ -17,6 +17,9 @@ public class HttpServer {
                     parameter("url", (url) ->
                         parameter("count", (count) -> {
                             {
+                                if (count != 0) {
+                                    
+                                }
                                 Future<Object> result = Patterns.ask(routerActor, new GetTestResults(packageId), 5000);
                                 return completeOKWithFuture(result, Jackson.marshaller());
                             }
