@@ -4,6 +4,7 @@ import akka.actor.ActorRef;
 import akka.pattern.Patterns;
 import org.apache.zookeeper.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ZookeeperWatcher implements Watcher {
@@ -27,7 +28,7 @@ public class ZookeeperWatcher implements Watcher {
             e.printStackTrace();
         }
 
-        List<String> servers = null;
+        List<String> servers = new ArrayList<>();
         try {
             servers = zoo.getChildren("/servers", this);
 
