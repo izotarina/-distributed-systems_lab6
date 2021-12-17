@@ -11,7 +11,9 @@ import static akka.http.javadsl.server.Directives.*;
 public class HttpServer {
     private final ActorRef confStorageActor;
 
-    public HttpServer(ActorRef confStorageActor)
+    public HttpServer(ActorRef confStorageActor) {
+        this.confStorageActor = confStorageActor;
+    }
 
     private Route createRoute(ActorRef routerActor) {
         Route router = route(
