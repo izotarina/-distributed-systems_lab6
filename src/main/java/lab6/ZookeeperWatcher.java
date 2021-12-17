@@ -10,8 +10,9 @@ public class ZookeeperWatcher implements Watcher {
     private final ZooKeeper zoo;
     private final ActorRef confStorage;
 
-    public ZookeeperWatcher(ZooKeeper zoo) {
+    public ZookeeperWatcher(ZooKeeper zoo, ActorRef confStorage) {
         this.zoo = zoo;
+        this.confStorage = confStorage;
     }
 
     @Override
