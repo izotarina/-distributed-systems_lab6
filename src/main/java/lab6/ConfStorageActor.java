@@ -15,7 +15,7 @@ public class ConfStorageActor extends AbstractActor {
                 .match(ServersList.class, m -> {
                     servers = m.getServers();
                 })
-                .match(GetTestResult.class, req -> {
+                .match(GetRandomServer.class, req -> {
                             Pair<String, Integer> key = new Pair<>(req.getUrl(), req.getRequestCount());
                             StoreTestResult result = null;
 
