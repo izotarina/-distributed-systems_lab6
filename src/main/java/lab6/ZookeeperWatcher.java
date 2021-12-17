@@ -6,6 +6,11 @@ import java.util.List;
 
 public class ZookeeperWatcher implements Watcher {
     private final static ZooKeeper zoo;
+
+    public ZookeeperWatcher(ZooKeeper zoo) {
+        
+    }
+
     @Override
     public void process(WatchedEvent watchedEvent) {
         zoo.create("/servers/s",
