@@ -4,10 +4,11 @@ import akka.actor.AbstractActor;
 import akka.japi.pf.ReceiveBuilder;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class ConfStorageActor extends AbstractActor {
-    private ArrayList<String> servers = new ArrayList<>();
+    private List<String> servers = new ArrayList<>();
     private final Random random = new Random();
 
     @Override
