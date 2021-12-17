@@ -12,13 +12,16 @@ public class HttpServer {
 
     private Route createRoute(ActorRef routerActor) {
         Route router = route(
-                path("", () ->
-                        get(() ->
-                                parameter("url", (url) ->
-                                        parameter("count", (count) -> {
-
-                                        })
-                                )))
-        return router;
+            path("", () ->
+                get(() ->
+                    parameter("url", (url) ->
+                        parameter("count", (count) -> {
+                            {
+                                Future<Object> result = Patterns.ask(routerActor, new GetTestResults(packageId), 5000);
+                                return completeOKWithFuture(result, Jackson.marshaller());
+                            }
+                        })
+                    )))
+    return router;
     }
 }
