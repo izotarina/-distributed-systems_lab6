@@ -1,4 +1,6 @@
 package lab6;
 
-public class ZookeeperWatcher {
+import org.apache.zookeeper.Watcher;
+
+public class ZookeeperWatcher implements Watcher {
 }
