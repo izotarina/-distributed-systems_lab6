@@ -33,9 +33,8 @@ public class HttpServer {
                                         .thenCompose(response -> http.singleRequest(HttpRequest.create(String.format("http://%s/?url=http://%s&count=%d", response, url, Integer.parseInt(count)))))
                                     );
                                 }
-                                
-                                Future<Object> result = Patterns.ask(routerActor, new GetTestResults(packageId), 5000);
-                                return completeOKWithFuture(result, Jackson.marshaller());
+
+                                return completeWithFuture(Patterns.ask())
                             }
                         })
                     )))
