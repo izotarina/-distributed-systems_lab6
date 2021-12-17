@@ -28,10 +28,10 @@ public class HttpServer {
                     parameter("url", (url) ->
                         parameter("count", (count) -> {
                             {
-                                if (count != 0) {
+                                if (Integer.parseInt(count) != 0) {
                                     return completeWithFuture(Patterns.ask(confStorageActor, new GetRandomServer(), Duration.ofMillis(5000))
                                         .thenCompose(response -> {
-                                            http.singleRequest(HttpRequest.create(String.format("http://%s/?url=http://%s&count=%d", response, url, count)))
+                                            return http.singleRequest(HttpRequest.create(String.format("http://%s/?url=http://%s&count=%d", response, url, Integer.parseInt(count))));
                                     })
                                     )
                                 }
