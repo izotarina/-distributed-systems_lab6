@@ -26,21 +26,13 @@ public class ZookeeperWatcher implements Watcher {
         List<String> servers = null;
         try {
             servers = zoo.getChildren("/servers", this);
+
+            for (String s: servers) {
+                byte[] data = zoo.getData("/servers/" + s, false, null);
+                System.out.println("server " + s + " data=" + new String(data));
+            }
         } catch (KeeperException | InterruptedException e) {
             e.printStackTrace();
-        }
-
-        assert servers != null;
-        for (String s: servers) {
-            byte[] data = new byte[0];
-            try {
-                data = zoo.getData("/servers/" + s, false, null);
-            } catch (KeeperException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            System.out.println("server " + s + " data=" + new String(data));
         }
     }
 }
