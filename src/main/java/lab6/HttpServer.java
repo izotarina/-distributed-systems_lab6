@@ -20,7 +20,7 @@ public class HttpServer {
     }
 
     private Route createRoute(ActorRef routerActor) {
-        Route router = route(
+        return route(
             path("", () ->
                 get(() ->
                     parameter("url", (url) ->
@@ -35,8 +35,9 @@ public class HttpServer {
                                 return completeWithFuture(http.singleRequest(HttpRequest.create(url)));
                             }
                         })
-                    ))));
-
-        return router;
+                    )
+                )
+            )
+        );
     }
 }
