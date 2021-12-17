@@ -4,11 +4,12 @@ import akka.actor.AbstractActor;
 import akka.japi.Pair;
 import akka.japi.pf.ReceiveBuilder;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ConfStorageActor extends AbstractActor {
-    private final Map<Pair<String, Integer>, StoreTestResult> store = new HashMap<>();
+    private final ArrayList<String> servers = new ArrayList<>();
 
     @Override
     public Receive createReceive() {
