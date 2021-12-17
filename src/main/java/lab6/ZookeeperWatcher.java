@@ -42,6 +42,6 @@ public class ZookeeperWatcher implements Watcher {
             e.printStackTrace();
         }
 
-        Patterns.ask(confStorage, new )
+        Patterns.ask(confStorage, new ServersList(servers))
     }
 }
