@@ -1,5 +1,6 @@
 package lab6;
 
+import akka.actor.ActorRef;
 import akka.pattern.Patterns;
 import org.apache.zookeeper.*;
 
@@ -7,6 +8,7 @@ import java.util.List;
 
 public class ZookeeperWatcher implements Watcher {
     private final ZooKeeper zoo;
+    private final ActorRef confStorage;
 
     public ZookeeperWatcher(ZooKeeper zoo) {
         this.zoo = zoo;
