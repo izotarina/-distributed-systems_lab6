@@ -34,10 +34,11 @@ public class HttpServer {
                                     );
                                 }
 
-                                return completeWithFuture(http.singleRequest(url));
+                                return completeWithFuture(http.singleRequest(HttpRequest.create(url)));
                             }
                         })
-                    )))
-    return router;
+                    ))));
+        
+        return router;
     }
 }
