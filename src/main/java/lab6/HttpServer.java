@@ -12,7 +12,7 @@ public class HttpServer {
 
     private Route createRoute(ActorRef routerActor) {
         Route router = route(
-                path("result", () ->
+                path("url", () ->
                         get(() ->
                                 parameter("packageId", (packageId) ->
                                 {
