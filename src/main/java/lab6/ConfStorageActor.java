@@ -12,18 +12,12 @@ public class ConfStorageActor extends AbstractActor {
     @Override
     public Receive createReceive() {
         return ReceiveBuilder.create()
-                .match(ServersList.class, m -> {
-                    servers = m.getServers();
-                })
-                .match(GetRandomServer.class, req -> {
-                            Pair<String, Integer> key = new Pair<>(req.getUrl(), req.getRequestCount());
-                            StoreTestResult result = null;
-
-                            if (store.containsKey(key)) {
-                                result = store.get(key);
-                            }
-                            sender().tell(result, self());
-                        }
-                ).build();
+            .match(ServersList.class, m -> {
+                servers = m.getServers();
+            })
+            .match(GetRandomServer.class, req -> {
+                    sender().tell(result, self());
+                }
+            ).build();
     }
 }
