@@ -12,9 +12,9 @@ public class HttpServer {
 
     private Route createRoute(ActorRef routerActor) {
         Route router = route(
-                path("url", () ->
+                path("", () ->
                         get(() ->
-                                parameter("packageId", (packageId) ->
+                                parameter("url", (url) ->
                                 {
                                     Future<Object> result = Patterns.ask(routerActor, new GetTestResults(packageId), 5000);
                                     return completeOKWithFuture(result, Jackson.marshaller());
