@@ -14,6 +14,7 @@ import static akka.http.javadsl.server.Directives.*;
 public class HttpServer implements Watcher {
     private final static String HOST = "localhost:";
     private final static String URL_PARAMETER = "url";
+    private final static String COUNT_PARAMETER = "count";
 
     private final ActorRef confStorageActor;
     private final Http http;
