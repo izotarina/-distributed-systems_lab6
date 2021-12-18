@@ -53,7 +53,7 @@ public class ZookeeperApp {
                 final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = server.createRoute().flow(system, materializer);
                 final CompletionStage<ServerBinding> binding = http.bindAndHandle(
                         routeFlow,
-                        ConnectHttp.toHost("localhost", Integer.parseInt(port)),
+                        ConnectHttp.toHost(HOST, Integer.parseInt(port)),
                         materializer
                 );
                 bindings.add(binding);
