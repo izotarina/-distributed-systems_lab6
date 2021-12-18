@@ -17,6 +17,7 @@ public class HttpServer implements Watcher {
     private final ActorRef confStorageActor;
     private final Http http;
     private final String path;
+    private final ZooKeeper zoo;
 
     public HttpServer(ActorRef confStorageActor, Http http, ZooKeeper zoo, String port) {
         this.confStorageActor = confStorageActor;
