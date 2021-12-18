@@ -7,6 +7,7 @@ import akka.http.javadsl.server.Route;
 import akka.pattern.Patterns;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
+import org.apache.zookeeper.ZooKeeper;
 
 import java.time.Duration;
 
@@ -17,11 +18,11 @@ public class HttpServer implements Watcher {
     private final Http http;
     private final String path;
 
-    public HttpServer(ActorRef confStorageActor, Http http, String port) {
+    public HttpServer(ActorRef confStorageActor, Http http, ZooKeeper zoo, String port) {
         this.confStorageActor = confStorageActor;
         this.http = http;
         this.path = "localhost:" + port;
-        
+
     }
 
     private Route createRoute() {
