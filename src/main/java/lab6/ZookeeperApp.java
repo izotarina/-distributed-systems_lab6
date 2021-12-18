@@ -4,10 +4,14 @@ import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.http.javadsl.Http;
+import akka.http.javadsl.ServerBinding;
 import akka.stream.ActorMaterializer;
 import org.apache.zookeeper.ZooKeeper;
 
+import javax.annotation.processing.Completion;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.concurrent.CompletionStage;
 
 public class ZookeeperApp {
     public static void main(String[] args) throws IOException {
@@ -20,5 +24,7 @@ public class ZookeeperApp {
         ZooKeeper zoo = new ZooKeeper(args[0], 3000, null);
         ZookeeperWatcher zookeeperWatcher = new ZookeeperWatcher(zoo, confStorage);
 
+
+        ArrayList<CompletionStage<ServerBinding>> bindings = new ArrayList<>();
     }
 }
