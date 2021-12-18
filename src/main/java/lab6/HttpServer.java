@@ -44,7 +44,7 @@ public class HttpServer implements Watcher {
                         parameter(COUNT_PARAMETER, (count) -> {
                             {
                                 if (Integer.parseInt(count) != 0) {
-                                    return completeWithFuture(Patterns.ask(confStorageActor, new GetRandomServer(), Duration.ofMillis(5000))
+                                    return completeWithFuture(Patterns.ask(confStorageActor, new GetRandomServer(), TIMEOUT)
                                         .thenCompose(response -> http.singleRequest(HttpRequest.create(String.format(REQUEST_FORMAT, response, url, Integer.parseInt(count) - 1))))
                                     );
                                 }
