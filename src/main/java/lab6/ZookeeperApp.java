@@ -58,7 +58,8 @@ public class ZookeeperApp {
         System.out.println(info + "Press RETURN to stop...");
         try {
             System.in.read();
-        } catch (IOException) {
+        } catch (IOException e) {
+            e.printStackTrace();
             System.exit(-1);
         }
 
