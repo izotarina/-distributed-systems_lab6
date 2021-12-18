@@ -25,5 +25,8 @@ public class ZookeeperApp {
 
 
         ArrayList<CompletionStage<ServerBinding>> bindings = new ArrayList<>();
+        for (int i = 1; i < args.length; ++i) {
+            
+        }
     }
 }
