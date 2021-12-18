@@ -45,8 +45,10 @@ public class ZookeeperApp {
             );
             bindings.add(binding);
             info.append("http://localhost:").append(port).append("/\n");
-            } catch ()
-
+            } catch (KeeperException | InterruptedException e) {
+                e.printStackTrace();
+                System.exit(-1);
+            }
         }
 
         System.out.println(info + "Press RETURN to stop...");
