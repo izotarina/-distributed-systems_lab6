@@ -10,9 +10,11 @@ public class ZookeeperWatcher implements Watcher {
     private final ZooKeeper zoo;
     private final ActorRef confStorage;
 
-    public ZookeeperWatcher(ZooKeeper zoo, ActorRef confStorage) {
+    public ZookeeperWatcher(ZooKeeper zoo, ActorRef confStorage) throws InterruptedException, KeeperException {
         this.zoo = zoo;
         this.confStorage = confStorage;
+
+        byte[] data = this.zoo.getData("/servers", true, null);
     }
 
     @Override

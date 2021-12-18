@@ -35,6 +35,8 @@ public class ZookeeperApp {
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(-1);
+        } catch (InterruptedException | KeeperException e) {
+            e.printStackTrace();
         }
 
         ArrayList<CompletionStage<ServerBinding>> bindings = new ArrayList<>();
