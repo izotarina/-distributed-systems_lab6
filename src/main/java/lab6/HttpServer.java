@@ -37,8 +37,8 @@ public class HttpServer implements Watcher {
         return route(
             path("", () ->
                 get(() ->
-                    parameter("url", (url) ->
-                        parameter("count", (count) -> {
+                    parameter(URL_PARAMETER, (url) ->
+                        parameter(COUNT_PARAMETER, (count) -> {
                             {
                                 if (Integer.parseInt(count) != 0) {
                                     return completeWithFuture(Patterns.ask(confStorageActor, new GetRandomServer(), Duration.ofMillis(5000))
