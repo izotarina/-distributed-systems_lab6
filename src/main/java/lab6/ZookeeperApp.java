@@ -45,7 +45,7 @@ public class ZookeeperApp {
             info.append("http://localhost:").append(port).append("/\n");
         }
 
-        System.out.println("Press RETURN to stop...");
+        System.out.println("Press RETURN to stop..." + info);
         System.in.read();
 
         for (int i = 0; i < bindings.size(); ++i) {
