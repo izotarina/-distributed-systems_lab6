@@ -17,12 +17,12 @@ public class HttpServer implements Watcher {
     private final String path;
     private final ZooKeeper zoo;
 
-    public HttpServer(ActorRef confStorageActor, Http http, ZooKeeper zoo, String port) {
+    public HttpServer(ActorRef confStorageActor, Http http, ZooKeeper zoo, String port) throws InterruptedException, KeeperException {
         this.confStorageActor = confStorageActor;
         this.http = http;
         this.path = "localhost:" + port;
         this.zoo = zoo;
-        zoo.create("/servers/s",
+        zoo.create("/servers/" + path,
                 "data".getBytes(),
                 ZooDefs.Ids.OPEN_ACL_UNSAFE ,
                 CreateMode.EPHEMERAL_SEQUENTIAL
