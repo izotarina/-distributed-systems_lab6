@@ -22,6 +22,7 @@ import java.util.concurrent.CompletionStage;
 public class ZookeeperApp {
     private final static String ACTOR_SYSTEM = "test";
     private final static int TIMEOUT = 5000;
+    private final static String HOST = "localhost";
 
     public static void main(String[] args) {
         BasicConfigurator.configure();
