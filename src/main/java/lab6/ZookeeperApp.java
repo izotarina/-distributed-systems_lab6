@@ -29,7 +29,10 @@ public class ZookeeperApp {
         try {
             ZooKeeper zoo = new ZooKeeper(args[0], 3000, null);
             ZookeeperWatcher zookeeperWatcher = new ZookeeperWatcher(zoo, confStorage);
-        } catch ()
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(-1);
+        }
 
         ArrayList<CompletionStage<ServerBinding>> bindings = new ArrayList<>();
         StringBuilder info = new StringBuilder();
