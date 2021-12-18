@@ -15,6 +15,7 @@ import static akka.http.javadsl.server.Directives.*;
 public class HttpServer implements Watcher {
     private final ActorRef confStorageActor;
     private final Http http;
+    private final String path;
 
     public HttpServer(ActorRef confStorageActor, Http http) {
         this.confStorageActor = confStorageActor;
