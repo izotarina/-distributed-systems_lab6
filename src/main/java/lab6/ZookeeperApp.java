@@ -32,6 +32,8 @@ public class ZookeeperApp {
         ArrayList<CompletionStage<ServerBinding>> bindings = new ArrayList<>();
         StringBuilder info = new StringBuilder();
         for (int i = 1; i < args.length; ++i) {
+            try {
+
             String port = args[i];
             HttpServer server = new HttpServer(confStorage, http, zoo, port);
 
@@ -43,6 +45,8 @@ public class ZookeeperApp {
             );
             bindings.add(binding);
             info.append("http://localhost:").append(port).append("/\n");
+            } catch ()
+
         }
 
         System.out.println(info + "Press RETURN to stop...");
