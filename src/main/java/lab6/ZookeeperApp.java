@@ -21,10 +21,11 @@ import java.util.concurrent.CompletionStage;
 
 public class ZookeeperApp {
     private final static String ACTOR_SYSTEM = "test";
-    
+    private final static int TIMEOUT = 5000;
+
     public static void main(String[] args) {
         BasicConfigurator.configure();
-        ActorSystem system = ActorSystem.create("test");
+        ActorSystem system = ActorSystem.create(ACTOR_SYSTEM);
         ActorRef confStorage = system.actorOf(Props.create(ConfStorageActor.class));
 
         final Http http = Http.get(system);
@@ -32,7 +33,7 @@ public class ZookeeperApp {
         ZooKeeper zoo = null;
 
         try {
-            zoo = new ZooKeeper(args[0], 3000, null);
+            zoo = new ZooKeeper(args[0], TIMEOUT, null);
             new ZookeeperWatcher(zoo, confStorage);
         } catch (IOException e) {
             e.printStackTrace();
