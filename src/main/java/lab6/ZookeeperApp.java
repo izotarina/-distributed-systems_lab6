@@ -29,10 +29,11 @@ public class ZookeeperApp {
         ZooKeeper zoo = new ZooKeeper(args[0], 3000, null);
         ZookeeperWatcher zookeeperWatcher = new ZookeeperWatcher(zoo, confStorage);
 
-
         ArrayList<CompletionStage<ServerBinding>> bindings = new ArrayList<>();
+        StringBuilder info = new StringBuilder();
         for (int i = 1; i < args.length; ++i) {
-            HttpServer server = new HttpServer(confStorage, http, zoo, args[i]);
+            String port = args[i];
+            HttpServer server = new HttpServer(confStorage, http, zoo, port);
 
             final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = server.createRoute().flow(system, materializer);
             final CompletionStage<ServerBinding> binding = http.bindAndHandle(
@@ -41,9 +42,10 @@ public class ZookeeperApp {
                     materializer
             );
             bindings.add(binding);
+            info.append("http://localhost:").append(port)
         }
 
-        System.out.println("Server online at http://localhost:8080/\nPress RETURN to stop...");
+        System.out.println("Press RETURN to stop...");
         System.in.read();
 
         for (int i = 0; i < bindings.size(); ++i) {
