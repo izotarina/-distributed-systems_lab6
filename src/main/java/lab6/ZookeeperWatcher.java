@@ -1,7 +1,6 @@
 package lab6;
 
 import akka.actor.ActorRef;
-import akka.pattern.Patterns;
 import org.apache.zookeeper.*;
 
 import java.util.ArrayList;
@@ -32,6 +31,6 @@ public class ZookeeperWatcher implements Watcher {
             e.printStackTrace();
         }
 
-        Patterns.ask(confStorage, new ServersList(serverUrls), 3000);
+        confStorage.tell(new ServersList(serverUrls), ActorRef.noSender());
     }
 }
