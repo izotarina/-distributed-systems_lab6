@@ -5,12 +5,13 @@ import akka.http.javadsl.Http;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.server.Route;
 import akka.pattern.Patterns;
+import org.apache.zookeeper.Watcher;
 
 import java.time.Duration;
 
 import static akka.http.javadsl.server.Directives.*;
 
-public class HttpServer {
+public class HttpServer implements Watcher {
     private final ActorRef confStorageActor;
     private final Http http;
 
