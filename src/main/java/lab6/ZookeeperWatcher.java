@@ -18,16 +18,6 @@ public class ZookeeperWatcher implements Watcher {
 
     @Override
     public void process(WatchedEvent watchedEvent) {
-        try {
-            zoo.create("/servers/s",
-                    "data".getBytes(),
-                    ZooDefs.Ids.OPEN_ACL_UNSAFE ,
-                    CreateMode.EPHEMERAL_SEQUENTIAL
-            );
-        } catch (KeeperException | InterruptedException e) {
-            e.printStackTrace();
-        }
-
         List<String> serverUrls = new ArrayList<>();
         try {
             List<String> servers = zoo.getChildren("/servers", this);
