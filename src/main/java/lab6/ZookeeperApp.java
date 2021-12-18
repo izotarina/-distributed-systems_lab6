@@ -56,7 +56,6 @@ public class ZookeeperApp {
         }
 
         System.out.println(info + "Press RETURN to stop...");
-        System.in.read();
 
         for (int i = 0; i < bindings.size(); ++i) {
             bindings.get(i).thenCompose(ServerBinding::unbind).thenAccept(unbound -> system.terminate());
