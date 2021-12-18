@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.concurrent.CompletionStage;
 
 public class ZookeeperApp {
-    public static void main(String[] args) throws IOException, InterruptedException, KeeperException {
+    public static void main(String[] args) throws IOException {
         ActorSystem system = ActorSystem.create("test");
         ActorRef confStorage = system.actorOf(Props.create(ConfStorageActor.class));
 
