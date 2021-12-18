@@ -23,6 +23,8 @@ public class HttpServer implements Watcher {
         this.confStorageActor = confStorageActor;
         this.http = http;
         this.path = "localhost:" + port;
+        this.zoo = zoo;
+        zoo.create()
 
     }
 
