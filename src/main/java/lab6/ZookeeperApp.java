@@ -37,9 +37,17 @@ public class ZookeeperApp {
             final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = server.createRoute().flow(system, materializer);
             final CompletionStage<ServerBinding> binding = http.bindAndHandle(
                     routeFlow,
-                    ConnectHttp.toHost("localhost", 8080),
+                    ConnectHttp.toHost("localhost", Integer.parseInt(args[i])),
                     materializer
             );
+            bindings.add(binding);
+        }
+
+        System.out.println("Server online at http://localhost:8080/\nPress RETURN to stop...");
+        System.in.read();
+
+        for (int i = 0; i < bindings.size(); ++i) {
+            
         }
     }
 }
