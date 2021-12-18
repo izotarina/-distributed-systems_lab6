@@ -42,7 +42,7 @@ public class ZookeeperApp {
                     materializer
             );
             bindings.add(binding);
-            info.append("http://localhost:").append(port)
+            info.append("http://localhost:").append(port).append("/\n");
         }
 
         System.out.println("Press RETURN to stop...");
