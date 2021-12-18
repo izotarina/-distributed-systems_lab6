@@ -17,7 +17,7 @@ public class ZookeeperApp {
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
 
-        ZooKeeper zoo = new ZooKeeper("localhost:3000", 3000, null);
+        ZooKeeper zoo = new ZooKeeper(args[0], 3000, null);
         ZookeeperWatcher zookeeperWatcher = new ZookeeperWatcher(zoo, confStorage);
 
     }
