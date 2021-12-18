@@ -26,8 +26,10 @@ public class ZookeeperApp {
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
 
-        ZooKeeper zoo = new ZooKeeper(args[0], 3000, null);
-        ZookeeperWatcher zookeeperWatcher = new ZookeeperWatcher(zoo, confStorage);
+        try {
+            ZooKeeper zoo = new ZooKeeper(args[0], 3000, null);
+            ZookeeperWatcher zookeeperWatcher = new ZookeeperWatcher(zoo, confStorage);
+        } catch ()
 
         ArrayList<CompletionStage<ServerBinding>> bindings = new ArrayList<>();
         StringBuilder info = new StringBuilder();
