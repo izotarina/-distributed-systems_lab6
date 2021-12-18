@@ -33,21 +33,19 @@ public class ZookeeperApp {
         StringBuilder info = new StringBuilder();
         for (int i = 1; i < args.length; ++i) {
             try {
+                String port = args[i];
+                HttpServer server = new HttpServer(confStorage, http, zoo, port);
 
-            String port = args[i];
-            HttpServer server = new HttpServer(confStorage, http, zoo, port);
-
-            final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = server.createRoute().flow(system, materializer);
-            final CompletionStage<ServerBinding> binding = http.bindAndHandle(
-                    routeFlow,
-                    ConnectHttp.toHost("localhost", Integer.parseInt(args[i])),
-                    materializer
-            );
-            bindings.add(binding);
-            info.append("http://localhost:").append(port).append("/\n");
+                final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = server.createRoute().flow(system, materializer);
+                final CompletionStage<ServerBinding> binding = http.bindAndHandle(
+                        routeFlow,
+                        ConnectHttp.toHost("localhost", Integer.parseInt(args[i])),
+                        materializer
+                );
+                bindings.add(binding);
+                info.append("http://localhost:").append(port).append("/\n");
             } catch (KeeperException | InterruptedException e) {
                 e.printStackTrace();
-                System.exit(-1);
             }
         }
 
