@@ -28,15 +28,15 @@ public class ZookeeperWatcher implements Watcher {
             e.printStackTrace();
         }
 
-        List<String> servers = new ArrayList<>();
+        List<String> serverUrls = new ArrayList<>();
         try {
-            servers = zoo.getChildren("/servers", this);
+            List<String> servers = zoo.getChildren("/servers", this);
 
             for (String s: servers) {
                 byte[] data = zoo.getData("/servers/" + s, false, null);
                 System.out.println("server " + s + " data=" + new String(data));
 
-                servers.add(new String(data));
+                serverUrls.add(new String(data));
             }
         } catch (KeeperException | InterruptedException e) {
             e.printStackTrace();
