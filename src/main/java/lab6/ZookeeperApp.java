@@ -34,7 +34,7 @@ public class ZookeeperApp {
         for (int i = 1; i < args.length; ++i) {
             HttpServer server = new HttpServer(confStorage, http, zoo, args[i]);
 
-            final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = server(materializer, storage);
+            final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = server.createRoute.flo(materializer, storage);
             final CompletionStage<ServerBinding> binding = http.bindAndHandle(
                     routeFlow,
                     ConnectHttp.toHost("localhost", 8080),
