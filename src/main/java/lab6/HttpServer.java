@@ -23,7 +23,7 @@ public class HttpServer implements Watcher {
         this.path = "localhost:" + port;
         this.zoo = zoo;
         zoo.create("/servers/" + path,
-                "data".getBytes(),
+                path.getBytes(),
                 ZooDefs.Ids.OPEN_ACL_UNSAFE ,
                 CreateMode.EPHEMERAL_SEQUENTIAL
         );
