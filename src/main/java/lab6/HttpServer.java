@@ -12,6 +12,8 @@ import java.time.Duration;
 import static akka.http.javadsl.server.Directives.*;
 
 public class HttpServer implements Watcher {
+    private final static String HOST = "localhost:";
+
     private final ActorRef confStorageActor;
     private final Http http;
     private final String path;
@@ -20,7 +22,7 @@ public class HttpServer implements Watcher {
     public HttpServer(ActorRef confStorageActor, Http http, ZooKeeper zoo, String port) throws InterruptedException, KeeperException {
         this.confStorageActor = confStorageActor;
         this.http = http;
-        this.path = "localhost:" + port;
+        this.path = HOST + port;
         this.zoo = zoo;
         zoo.create("/servers/" + path,
                 path.getBytes(),
