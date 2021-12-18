@@ -59,7 +59,7 @@ public class ZookeeperApp {
         try {
             System.in.read();
         } catch (IOException) {
-            
+            System.exit(-1);
         }
 
         for (int i = 0; i < bindings.size(); ++i) {
