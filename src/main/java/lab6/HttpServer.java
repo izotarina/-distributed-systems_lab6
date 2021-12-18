@@ -5,6 +5,7 @@ import akka.http.javadsl.Http;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.server.Route;
 import akka.pattern.Patterns;
+import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 
 import java.time.Duration;
@@ -40,5 +41,10 @@ public class HttpServer implements Watcher {
                 )
             )
         );
+    }
+
+    @Override
+    public void process(WatchedEvent watchedEvent) {
+
     }
 }
