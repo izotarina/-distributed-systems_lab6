@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.concurrent.CompletionStage;
 
 public class ZookeeperApp {
+    private final static String ACTOR_SYSTEM = "test";
+    
     public static void main(String[] args) {
         BasicConfigurator.configure();
         ActorSystem system = ActorSystem.create("test");
