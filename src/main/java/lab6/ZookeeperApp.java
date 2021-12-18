@@ -65,8 +65,8 @@ public class ZookeeperApp {
             System.exit(-1);
         }
 
-        for (int i = 0; i < bindings.size(); ++i) {
-            bindings.get(i).thenCompose(ServerBinding::unbind).thenAccept(unbound -> system.terminate());
+        for (CompletionStage<ServerBinding> binding : bindings) {
+            binding.thenCompose(ServerBinding::unbind).thenAccept(unbound -> system.terminate());
         }
     }
 }
