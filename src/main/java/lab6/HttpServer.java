@@ -15,6 +15,7 @@ public class HttpServer implements Watcher {
     private final static String HOST = "localhost:";
     private final static String URL_PARAMETER = "url";
     private final static String COUNT_PARAMETER = "count";
+    private final static String SEGMENT_PATH = "";
 
     private final ActorRef confStorageActor;
     private final Http http;
@@ -35,7 +36,7 @@ public class HttpServer implements Watcher {
 
     public Route createRoute() {
         return route(
-            path("", () ->
+            path(SEGMENT_PATH, () ->
                 get(() ->
                     parameter(URL_PARAMETER, (url) ->
                         parameter(COUNT_PARAMETER, (count) -> {
