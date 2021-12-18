@@ -26,7 +26,7 @@ public class ZookeeperApp {
 
         ArrayList<CompletionStage<ServerBinding>> bindings = new ArrayList<>();
         for (int i = 1; i < args.length; ++i) {
-            HttpServer server = new HttpServer(confStorage, http,)
+            HttpServer server = new HttpServer(confStorage, http, zoo, args[i])
         }
     }
 }
