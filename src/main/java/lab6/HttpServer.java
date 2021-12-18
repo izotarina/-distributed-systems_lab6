@@ -16,6 +16,7 @@ public class HttpServer implements Watcher {
     private final static String URL_PARAMETER = "url";
     private final static String COUNT_PARAMETER = "count";
     private final static String SEGMENT_PATH = "";
+    private final static String REQUEST_FORMAT = "http://%s/?url=%s&count=%d";
 
     private final ActorRef confStorageActor;
     private final Http http;
@@ -43,7 +44,7 @@ public class HttpServer implements Watcher {
                             {
                                 if (Integer.parseInt(count) != 0) {
                                     return completeWithFuture(Patterns.ask(confStorageActor, new GetRandomServer(), Duration.ofMillis(5000))
-                                        .thenCompose(response -> http.singleRequest(HttpRequest.create(String.format("http://%s/?url=%s&count=%d", response, url, Integer.parseInt(count) - 1))))
+                                        .thenCompose(response -> http.singleRequest(HttpRequest.create(String.format(REQUEST_FORMAT, response, url, Integer.parseInt(count) - 1))))
                                     );
                                 }
 
