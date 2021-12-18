@@ -17,10 +17,11 @@ public class HttpServer implements Watcher {
     private final Http http;
     private final String path;
 
-    public HttpServer(ActorRef confStorageActor, Http http,) {
+    public HttpServer(ActorRef confStorageActor, Http http, String port) {
         this.confStorageActor = confStorageActor;
         this.http = http;
-        this.path = "localhost:" + 
+        this.path = "localhost:" + port;
+        
     }
 
     private Route createRoute() {
