@@ -1,11 +1,16 @@
 package lab6;
 
+import akka.NotUsed;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
+import akka.http.javadsl.ConnectHttp;
 import akka.http.javadsl.Http;
 import akka.http.javadsl.ServerBinding;
+import akka.http.javadsl.model.HttpRequest;
+import akka.http.javadsl.model.HttpResponse;
 import akka.stream.ActorMaterializer;
+import akka.stream.javadsl.Flow;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.ZooKeeper;
 
@@ -29,7 +34,12 @@ public class ZookeeperApp {
         for (int i = 1; i < args.length; ++i) {
             HttpServer server = new HttpServer(confStorage, http, zoo, args[i]);
 
-
+            final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = createFlow(materializer, storage);
+            final CompletionStage<ServerBinding> binding = http.bindAndHandle(
+                    routeFlow,
+                    ConnectHttp.toHost("localhost", 8080),
+                    materializer
+            );
         }
     }
 }
