@@ -31,7 +31,7 @@ public class ZookeeperApp {
 
         try {
             zoo = new ZooKeeper(args[0], 3000, null);
-            ZookeeperWatcher zookeeperWatcher = new ZookeeperWatcher(zoo, confStorage);
+            new ZookeeperWatcher(zoo, confStorage);
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(-1);
