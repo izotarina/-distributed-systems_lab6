@@ -29,7 +29,7 @@ public class HttpServer implements Watcher {
         );
     }
 
-    private Route createRoute() {
+    public Route createRoute() {
         return route(
             path("", () ->
                 get(() ->
