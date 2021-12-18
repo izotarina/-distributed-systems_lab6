@@ -18,6 +18,7 @@ public class HttpServer implements Watcher {
     private final static String SEGMENT_PATH = "";
     private final static String REQUEST_FORMAT = "http://%s/?url=%s&count=%d";
     private final static Duration TIMEOUT = Duration.ofMillis(5000);
+    private final static String INITIAL_ZOOKEPEER_PATH = "/servers/";
 
     private final ActorRef confStorageActor;
     private final Http http;
