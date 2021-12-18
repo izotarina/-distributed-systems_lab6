@@ -16,6 +16,19 @@ public class ZookeeperWatcher implements Watcher {
 
         byte[] data = this.zoo.getData("/servers", true, null);
         System.out.printf("servers data=%s", new String(data));
+        List<String> serverUrls = new ArrayList<>();
+        try {
+            List<String> servers = zoo.getChildren("/servers", this);
+
+            for (String s: servers) {
+                byte[] data1 = zoo.getData("/servers/" + s, false, null);
+                System.out.println("server " + s + " data=" + new String(data1));
+
+                serverUrls.add(new String(data1));
+            }
+        } catch (KeeperException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
