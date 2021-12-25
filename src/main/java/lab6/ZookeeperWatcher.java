@@ -11,7 +11,8 @@ public class ZookeeperWatcher implements Watcher {
     private final ActorRef confStorage;
 
     private final static String SERVERS_PATH = "/servers";
-    private final static String  = "/servers";
+    private final static String SLASH = "/";
+    private final static String PRINT_FORMAT = "server %s data=";
 
     public ZookeeperWatcher(ZooKeeper zoo, ActorRef confStorage) throws InterruptedException, KeeperException {
         this.zoo = zoo;
@@ -32,11 +33,11 @@ public class ZookeeperWatcher implements Watcher {
 
     private void sendServers() throws InterruptedException, KeeperException {
         List<String> serverUrls = new ArrayList<>();
-        List<String> servers = zoo.getChildren("/servers", this);
+        List<String> servers = zoo.getChildren(SERVERS_PATH, this);
 
         for (String s: servers) {
-            byte[] data = zoo.getData("/servers/" + s, false, null);
-            System.out.println("server " + s + " data=" + new String(data));
+            byte[] data = zoo.getData(SERVERS_PATH + SLASH + s, false, null);
+            System.out.println(String.format(PRINT_FORMAT, s) + new String(data));
 
             serverUrls.add(new String(data));
         }
