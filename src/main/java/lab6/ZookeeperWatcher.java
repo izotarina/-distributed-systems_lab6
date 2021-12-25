@@ -15,9 +15,6 @@ public class ZookeeperWatcher implements Watcher {
         this.confStorage = confStorage;
 
         sendServers();
-
-//        byte[] data = this.zoo.getData("/servers", true, null);
-//        System.out.printf("servers data=%s", new String(data));
     }
 
     @Override
