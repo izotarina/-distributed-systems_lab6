@@ -18,7 +18,8 @@ public class ConfStorageActor extends AbstractActor {
                 servers = m.getServers();
             })
             .match(GetRandomServer.class, req -> {
-                    sender().tell(random.nextInt(servers.size()), self());
+                System.out.println(servers);
+                    sender().tell(servers.get(random.nextInt(servers.size())), self());
                 }
             ).build();
     }

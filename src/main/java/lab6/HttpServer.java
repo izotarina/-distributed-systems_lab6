@@ -19,6 +19,7 @@ public class HttpServer implements Watcher {
     private final static String REQUEST_FORMAT = "http://%s/?url=%s&count=%d";
     private final static Duration TIMEOUT = Duration.ofMillis(5000);
     private final static String INITIAL_ZOOKEEPER_PATH = "/servers/";
+    private final static String ZERO_COUNT = "0";
 
     private final ActorRef confStorageActor;
     private final Http http;
@@ -40,13 +41,17 @@ public class HttpServer implements Watcher {
     public Route createRoute() {
         return route(
             path(SEGMENT_PATH, () ->
-                get(() ->
+                route(get(() ->
                     parameter(URL_PARAMETER, (url) ->
                         parameter(COUNT_PARAMETER, (count) -> {
                             {
-                                if (Integer.parseInt(count) != 0) {
+                                System.out.println("Count = " + count + " on " + path);
+                                if (!count.equals(ZERO_COUNT)) {
                                     return completeWithFuture(Patterns.ask(confStorageActor, new GetRandomServer(), TIMEOUT)
-                                        .thenCompose(response -> http.singleRequest(HttpRequest.create(String.format(REQUEST_FORMAT, response, url, Integer.parseInt(count) - 1))))
+                                        .thenCompose(response -> {
+                                            String format = String.format(REQUEST_FORMAT, response, url, Integer.parseInt(count) - 1);
+                                            return http.singleRequest(HttpRequest.create(format));
+                                        })
                                     );
                                 }
 
@@ -54,7 +59,7 @@ public class HttpServer implements Watcher {
                             }
                         })
                     )
-                )
+                ))
             )
         );
     }
