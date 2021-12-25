@@ -14,6 +14,23 @@ public class ZookeeperWatcher implements Watcher {
         this.zoo = zoo;
         this.confStorage = confStorage;
 
+        sendServers();
+
+        byte[] data = this.zoo.getData("/servers", true, null);
+        System.out.printf("servers data=%s", new String(data));
+    }
+
+    @Override
+    public void process(WatchedEvent watchedEvent) {
+        try {
+            sendServers();
+        } catch (KeeperException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void sendServers() throws InterruptedException, KeeperException {
         List<String> serverUrls = new ArrayList<>();
         List<String> servers = zoo.getChildren("/servers", this);
 
@@ -25,30 +42,5 @@ public class ZookeeperWatcher implements Watcher {
         }
         confStorage.tell(new ServersList(serverUrls), ActorRef.noSender());
 
-        byte[] data = this.zoo.getData("/servers", true, null);
-        System.out.printf("servers data=%s", new String(data));
-    }
-
-    @Override
-    public void process(WatchedEvent watchedEvent) {
-        List<String> serverUrls = new ArrayList<>();
-        try {
-            List<String> servers = zoo.getChildren("/servers", this);
-
-            for (String s: servers) {
-                byte[] data = zoo.getData("/servers/" + s, false, null);
-                System.out.println("server " + s + " data=" + new String(data));
-
-                serverUrls.add(new String(data));
-            }
-            confStorage.tell(new ServersList(serverUrls), ActorRef.noSender());
-        } catch (KeeperException | InterruptedException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    private void sendServers() {
-        
     }
 }
