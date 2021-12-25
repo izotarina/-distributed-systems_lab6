@@ -16,8 +16,8 @@ public class ZookeeperWatcher implements Watcher {
 
         sendServers();
 
-        byte[] data = this.zoo.getData("/servers", true, null);
-        System.out.printf("servers data=%s", new String(data));
+//        byte[] data = this.zoo.getData("/servers", true, null);
+//        System.out.printf("servers data=%s", new String(data));
     }
 
     @Override
