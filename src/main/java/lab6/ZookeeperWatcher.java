@@ -12,7 +12,7 @@ public class ZookeeperWatcher implements Watcher {
 
     private final static String SERVERS_PATH = "/servers";
     private final static String SLASH = "/";
-    private final static String PRINT_FORMAT = "server %s data=";
+    private final static String PRINT_FORMAT = "server %s data= ";
 
     public ZookeeperWatcher(ZooKeeper zoo, ActorRef confStorage) throws InterruptedException, KeeperException {
         this.zoo = zoo;
