@@ -10,6 +10,9 @@ public class ZookeeperWatcher implements Watcher {
     private final ZooKeeper zoo;
     private final ActorRef confStorage;
 
+    private final static String SERVERS_PATH = "/servers";
+    private final static String  = "/servers";
+
     public ZookeeperWatcher(ZooKeeper zoo, ActorRef confStorage) throws InterruptedException, KeeperException {
         this.zoo = zoo;
         this.confStorage = confStorage;
