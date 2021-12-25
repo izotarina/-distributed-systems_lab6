@@ -41,6 +41,5 @@ public class ZookeeperWatcher implements Watcher {
             serverUrls.add(new String(data));
         }
         confStorage.tell(new ServersList(serverUrls), ActorRef.noSender());
-
     }
 }
